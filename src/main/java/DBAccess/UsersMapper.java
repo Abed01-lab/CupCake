@@ -44,7 +44,7 @@ public class UsersMapper {
             ps.setString( 2, password );
             ResultSet rs = ps.executeQuery();
             if ( rs.next() ) {
-                String role = rs.getString( "rolle" );
+                String role = rs.getString( "role" );
                 int id = rs.getInt( "id" );
                 Useres useres = new Useres( email, password, role );
                 useres.setId( id );

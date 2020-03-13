@@ -1,9 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%@ page contentType="text/html; charset=UTF-8" %>
+    <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -27,39 +29,35 @@
         <div class="col-lg-12 w-100 h-100 p-3 mt-2" style="background-color: #eee;">
             <form action="FrontController" method="post">
                 <input type="hidden" name="target" value="addCupCake">
-                <h4>Velkommen ombord</h4>
-                <h4>Øens bedste cupcakes. Vælg Topping og bestil her:</h4>
-                <div class="row mt-4">
-                    <div class="col-sm">
-                        <select class="form-control" name="bundTopping">
-                            <option value="Chokolate">Chokolate</option>
-                            <option value="Vanilla">Vanilla</option>
-                            <option value="Nutmeg">Nutmeg</option>
-                            <option value="Pistacio">Pistacio</option>
-                            <option value="Almond">Almond</option>
-                        </select>
-                    </div>
-                    <div class="col-sm">
-                        <select class="form-control" name="topTopping">
-                            <option value="Chokolate">Chokolate</option>
-                            <option value="Blueberry">Blueberry</option>
-                            <option value="Rasberry">Rasberry</option>
-                            <option value="Crispy">Crispy</option>
-                            <option value="Strawberry">Strawberry</option>
-                            <option value="Rum">Rum</option>
-                            <option value="Orange">Orange</option>
-                            <option value="Lemon">Lemon</option>
-                            <option value="Blue cheese">Blue cheese</option>
-                        </select>
-                    </div>
-                    <div class="col-sm">
-                        <button type="submit" class="btn btn-primary">Læg i kurv</button>
-                    </div>
-                </div>
+                <h4>Indkøbskurv</h4>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Bund</th>
+                        <th scope="col">Top</th>
+                        <th scope="col">Antal</th>
+                        <th scope="col">Pris</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="element" items="${applicationScope.kurv}">
+                        <tr>
+                            <th scope="row"></th>
+                            <td>${element.bund}</td>
+                            <td>${element.top}</td>
+                            <td>${element.antal}</td>
+                            <td>${element.pris}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </form>
         </div>
-        <div class="col-lg"></div>
     </div>
+</div>
+<div class="col-lg"></div>
+</div>
 </div>
 
 <!-- Optional JavaScript -->

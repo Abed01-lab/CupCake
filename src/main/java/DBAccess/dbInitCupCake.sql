@@ -28,6 +28,7 @@ CREATE TABLE `ordrelinje` (
   `ordreid` INT NOT NULL,
   `topTopping` VARCHAR(45) NOT NULL,
   `bundTopping` VARCHAR(45) NOT NULL,
+  `antal` VARCHAR (45) NOT NULL,
   `pris` INT NOT NULL,
   PRIMARY KEY (`ordreid`),
   FOREIGN KEY (`ordreid`) REFERENCES `ordre`(`id`)
