@@ -44,6 +44,7 @@
                     <c:forEach var="element" items="${applicationScope.kurv}">
                         <tr>
                             <th scope="row"></th>
+                            <td>${element.number}</td>
                             <td>${element.bund}</td>
                             <td>${element.top}</td>
                             <td>${element.antal}</td>

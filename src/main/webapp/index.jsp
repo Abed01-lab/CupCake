@@ -53,6 +53,9 @@
                         </select>
                     </div>
                     <div class="col-sm">
+                        <input class="form-control" name="antal" placeholder="Antal">
+                    </div>
+                    <div class="col-sm">
                         <button type="submit" class="btn btn-primary">Læg i kurv</button>
                     </div>
                 </div>

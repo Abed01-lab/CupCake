@@ -36,8 +36,6 @@ public class AddCupCake extends Command {
         }
 
         ((List<CupCake>) servletContext.getAttribute("kurv")).add(cupCake);
-
-
         return "/WEB-INF/" + "kurv";
     }
 }

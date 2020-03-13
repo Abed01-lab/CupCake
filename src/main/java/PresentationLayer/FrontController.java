@@ -34,10 +34,10 @@ public class FrontController extends HttpServlet {
         try {
             Command action = Command.from( request );
             String view = action.execute( request, response );
-            request.getRequestDispatcher( "/WEB-INF/" + view + ".jsp" ).forward( request, response );
+            request.getRequestDispatcher( view + ".jsp" ).forward( request, response );
         } catch ( LoginSampleException ex ) {
             request.setAttribute( "error", ex.getMessage() );
-            request.getRequestDispatcher( "Logind.jsp" ).forward( request, response );
+            request.getRequestDispatcher( "index.jsp" ).forward( request, response );
         }
     }
 
