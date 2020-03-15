@@ -6,7 +6,6 @@ public class CupCake {
     String bund;
 
     private int antal;
-    
     int pris;
     
     public CupCake(String bund, String top){
