@@ -15,7 +15,7 @@
 
 <div class="container">
     <div class="row">
-        <img src="images/olskercupcakes.png" class="img-fluid">
+        <img src="../images/olskercupcakes.png" class="img-fluid">
 
         <div class="col-lg"></div>
         <ul class="nav navbar justify-content-end mt-2 w-100" style="background-color: #eee;">
@@ -31,6 +31,34 @@
                 <input type="hidden" name="target" value="addCupCake">
                 <h4>Indkøbskurv</h4>
                 <div class="row">
+                    <div class="col-sm">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col" class="text-center">OrdreID</th>
+                                <th scope="col" class="text-center">Bund</th>
+                                <th scope="col" class="text-center">Top</th>
+                                <th scope="col" class="text-center">Antal</th>
+                                <th scope="col" class="text-center">Pris</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="element" items="${applicationScope.kurvListe}">
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td class="text-center">${element.bund}</td>
+                                    <td class="text-center">${element.top}</td>
+                                    <td class="text-center">${element.antal}</td>
+                                    <td class="text-center">${element.pris}</td>
+                                    <td>
+                                        <butto type="submit" class="btn btn-primary"> Mere Info</butto>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="col-sm">
                         <table class="table">
                             <thead>
@@ -54,10 +82,6 @@
                             </c:forEach>
                             </tbody>
                         </table>
-                        <div class="col-sm">
-                            <button type="submit" class="btn btn-primary float-right">Køb</button>
-                            <button type="submit" class="btn btn-primary float-right mr-4">Gem Ordre</button>
-                        </div>
                     </div>
                 </div>
             </form>

@@ -29,6 +29,7 @@
                 <input type="hidden" name="target" value="addCupCake">
                 <h4>Velkommen ombord</h4>
                 <h4>Øens bedste cupcakes. Vælg Topping og bestil her:</h4>
+                ${requestScope.besked}
                 <div class="row mt-4">
                     <div class="col-sm">
                         <select class="form-control" name="bundTopping">
@@ -60,6 +61,7 @@
                     </div>
                 </div>
             </form>
+
         </div>
         <div class="col-lg"></div>
     </div>

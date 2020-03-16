@@ -20,7 +20,7 @@ CREATE TABLE `ordre` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `kundeid` INT NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`kundeid`) REFERENCES `useres`(`id`)
+  FOREIGN KEY (`kundeid`) REFERENCES `kunder`(`id`)
   );
 
 DROP TABLE IF EXISTS `ordrelinje`;

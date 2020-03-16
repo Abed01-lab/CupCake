@@ -2,15 +2,15 @@ package FunctionLayer;
 
 public class CupCake {
 
-    String top;
-    String bund;
-
+    private String top;
+    private String bund;
     private int antal;
-    int pris;
+    private int pris;
     
-    public CupCake(String bund, String top){
+    public CupCake(String bund, String top, int antal){
         this.bund = bund;
         this.top = top;
+        this.antal = antal;
     }
 
     public String getTop() {
@@ -31,5 +31,15 @@ public class CupCake {
 
     public void plusAntal(){
         antal =+1;
+    }
+
+    @Override
+    public String toString() {
+        return "CupCake" +
+                ", top " + top +
+                ", bund " + bund +
+                ", antal " + antal +
+                ", pris " + pris +
+                '}';
     }
 }
