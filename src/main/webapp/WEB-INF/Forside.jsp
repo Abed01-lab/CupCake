@@ -1,11 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ page contentType="text/html; charset=UTF-8" %>
-    <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -29,42 +28,36 @@
         <div class="col-lg-12 w-100 h-100 p-3 mt-2" style="background-color: #eee;">
             <form action="FrontController" method="post">
                 <input type="hidden" name="target" value="addCupCake">
-                <h4>Indkøbskurv</h4>
-                <div class="row">
+                <h4>Velkommen ombord</h4>
+                <h4>Øens bedste cupcakes. Vælg Topping og bestil her:</h4>
+                ${requestScope.besked}
+                <div class="row mt-4">
                     <div class="col-sm">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Bund</th>
-                                <th scope="col">Top</th>
-                                <th scope="col">Antal</th>
-                                <th scope="col">Pris</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach var="element" items="${sessionScope.kurvListe}">
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>${element.bund}</td>
-                                    <td>${element.top}</td>
-                                    <td>${element.antal}</td>
-                                    <td>${element.pris}</td>
-                                </tr>
+                        <select class="form-control" name="bottom">
+                            <c:forEach var="element" items="${applicationScope.bottomList}">
+                                <option value="${element.name}">${element.name}</option>
                             </c:forEach>
-                            </tbody>
-                        </table>
-                        <div class="col-sm">
-                            <button type="submit" class="btn btn-primary float-right">Køb</button>
-                            <button type="submit" class="btn btn-primary float-right mr-4">Gem Ordre</button>
-                        </div>
+                        </select>
+                    </div>
+                    <div class="col-sm">
+                        <select class="form-control" name="topping">
+                            <c:forEach var="element" items="${applicationScope.toppingList}">
+                                <option value="${element.name}">${element.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="col-sm">
+                        <input class="form-control" name="antal" placeholder="0">
+                    </div>
+                    <div class="col-sm">
+                        <button type="submit" class="btn btn-primary">Læg i kurv</button>
                     </div>
                 </div>
             </form>
+
         </div>
+        <div class="col-lg"></div>
     </div>
-</div>
-<div class="col-lg"></div>
 </div>
 
 <!-- Optional JavaScript -->
