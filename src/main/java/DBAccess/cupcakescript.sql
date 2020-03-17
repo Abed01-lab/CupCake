@@ -11,9 +11,9 @@ CREATE SCHEMA IF NOT EXISTS `cupcakeproject`;
 USE `cupcakeproject` ;
 
 -- -----------------------------------------------------
--- Table `cupcakeproject`.`bottom`
+-- Table `cupcakeproject`.`bottomAndTopping`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cupcakeproject`.`bottom` (
+CREATE TABLE IF NOT EXISTS `cupcakeproject`.`bottomAndTopping` (
   `bottomId` INT(11) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `price` INT(11) NOT NULL,
@@ -76,4 +76,4 @@ CREATE TABLE IF NOT EXISTS `cupcakeproject`.`ordersline` (
     REFERENCES `cupcakeproject`.`topping` (`toppingId`),
   CONSTRAINT `ordersline_ibfk_3`
     FOREIGN KEY (`bottomId`)
-    REFERENCES `cupcakeproject`.`bottom` (`bottomId`));
+    REFERENCES `cupcakeproject`.`bottomAndTopping` (`bottomId`));

@@ -3,6 +3,7 @@
 <head>
     <!-- Required meta tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ page contentType="text/html; charset=UTF-8" %>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -32,25 +33,17 @@
                 ${requestScope.besked}
                 <div class="row mt-4">
                     <div class="col-sm">
-                        <select class="form-control" name="bundTopping">
-                            <option value="Chokolate">Chokolate</option>
-                            <option value="Vanilla">Vanilla</option>
-                            <option value="Nutmeg">Nutmeg</option>
-                            <option value="Pistacio">Pistacio</option>
-                            <option value="Almond">Almond</option>
+                        <select class="form-control" name="bund">
+                            <c:forEach var="element" items="${requestScope.bottom}">
+                                <option value="${element.name}">${element.name}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="col-sm">
-                        <select class="form-control" name="topTopping">
-                            <option value="Chokolate">Chokolate</option>
-                            <option value="Blueberry">Blueberry</option>
-                            <option value="Rasberry">Rasberry</option>
-                            <option value="Crispy">Crispy</option>
-                            <option value="Strawberry">Strawberry</option>
-                            <option value="Rum">Rum</option>
-                            <option value="Orange">Orange</option>
-                            <option value="Lemon">Lemon</option>
-                            <option value="Blue cheese">Blue cheese</option>
+                        <select class="form-control" name="topping">
+                            <c:forEach var="element" items="${requestScope.topping}">
+                                <option value="${element.name}">${element.name}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="col-sm">
