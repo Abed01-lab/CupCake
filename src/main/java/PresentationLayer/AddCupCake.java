@@ -6,6 +6,7 @@ import FunctionLayer.LoginSampleException;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,31 +14,30 @@ public class AddCupCake extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 
-        ServletContext servletContext = request.getServletContext();
+        HttpSession session = request.getSession();
 
         String bund = request.getParameter("bundTopping");
         String top = request.getParameter("topTopping");
         String antal = request.getParameter("antal");
 
-        CupCake cupcake = new CupCake("chokolade", "chokolade", 1);
-        CupCake cupCake1 = new CupCake("chokolade", "chokolade", 1);
-        CupCake cupCake2 = new CupCake("chokolade", "chokolade", 1);
+        System.out.println(antal);
+        if (antal == ""){
+            System.out.println("if statement virker");
+            request.setAttribute("besked", "Du har ikke valgt antal");
+            return "WEB-INF/Forside";
+        }
 
         try {
-            if ((List<CupCake>) servletContext.getAttribute("kurvListe") == null) {
+            if ((List<CupCake>) session.getAttribute("kurvListe") == null) {
                 List<CupCake> kurvListe = new ArrayList<>();
-                kurvListe.add(cupcake);
-                kurvListe.add(cupCake1);
-                kurvListe.add(cupCake2);
-                servletContext.setAttribute("kurvListe", kurvListe);
+                session.setAttribute("kurvListe", kurvListe);
+                System.out.println("kurvlist init");
             }
 
             CupCake cupCake = new CupCake(bund, top, Integer.parseInt(antal));
-            ((List<CupCake>) servletContext.getAttribute("kurvListe")).add(cupCake);
+            ((List<CupCake>) session.getAttribute("kurvListe")).add(cupCake);
 
-            for (CupCake c: ((List<CupCake>) servletContext.getAttribute("kurvListe"))) {
-                System.out.println(c.toString());
-            }
+            System.out.println("cupcake init");
 
         } catch (Exception e){
             System.out.println("kunne ikke tilføge cupcake til Kurv");
