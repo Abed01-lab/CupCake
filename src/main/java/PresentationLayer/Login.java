@@ -1,12 +1,16 @@
 package PresentationLayer;
 
-import FunctionLayer.Useres;
-import FunctionLayer.LogicFacade;
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.*;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import java.util.List;
+
+import static DBAccess.CupcakeMapper.getBottom;
+import static DBAccess.CupcakeMapper.getTopping;
 
 /**
  The purpose of Login is to...
@@ -17,6 +21,8 @@ public class Login extends Command {
 
     @Override
     String execute( HttpServletRequest request, HttpServletResponse response ) throws LoginSampleException {
+        ServletContext servletContext = request.getServletContext();
+
         String email = request.getParameter( "email" );
         String password = request.getParameter( "password" );
         Useres useres = LogicFacade.login( email, password );
@@ -28,7 +34,17 @@ public class Login extends Command {
         session.setAttribute("email", email);  // ellers skal man skrive  user.email på jsp siderne og det er sgu lidt mærkeligt at man har adgang til private felter. Men måske er det meget fedt , jeg ved det ikke
 
 
-        return useres.getRole() + "page";
+        //Denne kode viser varianterne
+        try {
+            servletContext.setAttribute("toppingList", (List<BottomAndTopping>) getTopping());
+            servletContext.setAttribute("bottomList", (List<BottomAndTopping>) getBottom());
+        } catch (CupcakeException e) {
+            e.printStackTrace();
+        }
+
+
+
+        return "WEB-INF/Forside";
     }
 
 }

@@ -1,5 +1,6 @@
 package FunctionLayer;
 
+import DBAccess.CupcakeMapper;
 import DBAccess.UsersMapper;
 
 /**
