@@ -16,10 +16,9 @@
             <img src="images/olskercupcakes.png" class="img-fluid">
 
             <div class="col-lg"></div>
-            <ul class="nav navbar mt-2 w-100" style="background-color: #eee;">
-                <li style="text-align:left;font-size:28px;">Log ind her: </li>
+            <ul class="nav navbar mt-2 w-100 h-50" style="background-color: #eee;">
                 <li class="nav-item mr-lg-5">
-                    <a class="nav-link" href="#" style="text-align:right;">Kurv </a>
+                    <a class="nav-link" href="#" style="text-align:right;"> </a>
                 </li>
             </ul>
 
@@ -31,10 +30,10 @@
                     <form name="login" action="FrontController" method="post">
                         <input type="hidden" name="target" value="login">
                         Email:<br>
-                        <input type="text" name="email" placeholder="Skriv din email her">
+                        <input type="text" name="email" placeholder="Skriv din email her" value="eko@test.dk">
                         <br>
                         Kodeord:<br>
-                        <input type="password" name="password" placeholder="Skriv dit kodeord her">
+                        <input type="password" name="password" placeholder="Skriv dit kodeord her" value="eko">
                         <br>
                         <input type="submit" value="Log på">
 

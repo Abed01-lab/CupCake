@@ -2,44 +2,44 @@ package FunctionLayer;
 
 public class CupCake {
 
-    private String top;
-    private String bund;
-    private int antal;
-    private int pris;
+    private BottomAndTopping topping;
+    private BottomAndTopping bottom;
+    private int quantity;
+    private int sum;
     
-    public CupCake(String bund, String top, int antal){
-        this.bund = bund;
-        this.top = top;
-        this.antal = antal;
+    public CupCake(BottomAndTopping bottom, BottomAndTopping topping, int quantity){
+        this.bottom = bottom;
+        this.topping = topping;
+        this.quantity = quantity;
     }
 
-    public String getTop() {
-        return top;
+    public BottomAndTopping getTopping() {
+        return topping;
     }
 
-    public String getBund() {
-        return bund;
+    public BottomAndTopping getBottom() {
+        return bottom;
     }
 
-    public int getAntal(){
-        return antal;
+    public int getQuantity(){
+        return quantity;
     }
 
-    public  int getPris(){
-        return pris;
+    public  int getSum(){
+        return calculateSum();
     }
 
-    public void plusAntal(){
-        antal =+1;
+    private int calculateSum(){
+        return (bottom.getPrice() + topping.getPrice()) * quantity;
     }
 
     @Override
     public String toString() {
-        return "CupCake" +
-                ", top " + top +
-                ", bund " + bund +
-                ", antal " + antal +
-                ", pris " + pris +
+        return "CupCake{" +
+                "topping=" + topping +
+                ", bottom=" + bottom +
+                ", quantity=" + quantity +
+                ", sum=" + sum +
                 '}';
     }
 }

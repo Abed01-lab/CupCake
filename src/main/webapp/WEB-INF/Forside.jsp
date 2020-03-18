@@ -19,7 +19,7 @@
         <div class="col-lg"></div>
         <ul class="nav navbar justify-content-end mt-2 w-100" style="background-color: #eee;">
             <li class="nav-item">
-                <a class="nav-link" href="#">Logind</a>
+                <a class="nav-link" >${sessionScope.email}</a>
             </li>
             <li class="nav-item mr-lg-5">
                 <a class="nav-link" href="#">Kurv</a>
@@ -35,19 +35,19 @@
                     <div class="col-sm">
                         <select class="form-control" name="bottom">
                             <c:forEach var="element" items="${applicationScope.bottomList}">
-                                <option value="${element.name}">${element.name}</option>
+                                <option value="${element.id -1}">${element.name}</option>
                             </c:forEach>
                         </select>
                     </div>
                     <div class="col-sm">
                         <select class="form-control" name="topping">
                             <c:forEach var="element" items="${applicationScope.toppingList}">
-                                <option value="${element.name}">${element.name}</option>
+                                <option value="${element.id -1}">${element.name}</option>
                             </c:forEach>
                         </select>
                     </div>
                     <div class="col-sm">
-                        <input class="form-control" name="antal" placeholder="0">
+                        <input class="form-control" name="quantity" placeholder="0">
                     </div>
                     <div class="col-sm">
                         <button type="submit" class="btn btn-primary">Læg i kurv</button>
