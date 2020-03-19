@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>CupcCake</title>
+    <title>Olsker Cupcakes</title>
 </head>
 <body>
 
@@ -41,13 +41,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="element" items="${sessionScope.kurvListe}">
+                        <c:forEach var="element" items="${sessionScope.kurvListe}" varStatus="loop">
                             <tr>
-                                <th scope="row"></th>
+                                <td>${loop.index +1}</td>
                                 <td>${element.bottom.name}</td>
                                 <td>${element.topping.name}</td>
                                 <td>${element.quantity}</td>
-                                <td>${element.sum}</td>
+                                <td>${element.sum},- </td>
                             </tr>
                         </c:forEach>
                         </tbody>
