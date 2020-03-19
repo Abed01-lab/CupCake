@@ -19,6 +19,7 @@
 
         <div class="col-lg"></div>
         <ul class="nav navbar justify-content-end mt-2 w-100" style="background-color: #eee;">
+
             <li class="nav-item">
                 <a class="nav-link" href="#">Logind</a>
             </li>

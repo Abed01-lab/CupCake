@@ -19,6 +19,13 @@
 
         <div class="col-lg"></div>
         <ul class="nav navbar justify-content-end mt-2 w-100" style="background-color: #eee;">
+            <li class="nav-item mr-auto">
+            <form name="goBack" action="FrontController" method="post">
+                <input type="hidden" name="target" value="goBack">
+                <input type="submit" value="Tilbage">
+
+            </form>
+            </li>
             <li class="nav-item">
                 <a class="nav-link">${sessionScope.email}</a>
             </li>
@@ -44,10 +51,10 @@
                         <c:forEach var="element" items="${sessionScope.kurvListe}">
                             <tr>
                                 <th scope="row"></th>
-                                <td>${element.bund}</td>
-                                <td>${element.top}</td>
-                                <td>${element.antal}</td>
-                                <td>${element.pris}</td>
+                                <td>${element.bottom}</td>
+                                <td>${element.topping}</td>
+                                <td>${element.quantity}</td>
+                                <td>${element.sum}</td>
                             </tr>
                         </c:forEach>
                         </tbody>
