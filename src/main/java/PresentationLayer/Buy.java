@@ -21,11 +21,14 @@ public class Buy extends Command {
         ArrayList<CupCake> cupCakes = (ArrayList<CupCake>) session.getAttribute("kurvListe");
         Useres user = (Useres) session.getAttribute("user");
         try {
+            System.out.println("virker");
             insertOrderLine(user,cupCakes);
         } catch (CupcakeException e) {
             System.out.println("insert init failed");
             e.printStackTrace();
         }
+        ((ArrayList<CupCake>) session.getAttribute("kurvListe")).clear();
+
         return "WEB-INF/kundeBestillingBekræftigelse";
     }
 }

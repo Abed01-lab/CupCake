@@ -55,12 +55,14 @@ public class CupcakeMapper {
     }
 
     public static void insertOrderLine(Useres user, ArrayList<CupCake> cupcakeList) throws CupcakeException {
+        int orderId = insertOrder(user);
         try {
+            System.out.println("virker");
             Connection con = Connector.connection();
             String SQL = "INSERT INTO cupcakeproject.ordersline (ordersId, quantity, sumNumber, toppingId, bottomId) VALUES (?,?,?,?, ?)";
             for (CupCake cup : cupcakeList) {
                 PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-                ps.setInt(1, insertOrder(user));
+                ps.setInt(1, orderId);
                 ps.setInt(2, cup.getQuantity());
                 ps.setInt(3, cup.getSum());
                 ps.setInt(4, cup.getTopping().getId());
@@ -73,15 +75,13 @@ public class CupcakeMapper {
         }
     }
 
-    public static void getOrderLine() {
-
-    }
 
 
     public static int insertOrder(Useres user) throws CupcakeException {
         int id = 0;
         System.out.println(user.toString());
         try {
+            System.out.println("virker");
             Connection con = Connector.connection();
             String SQL = "INSERT INTO cupcakeproject.orders (customerId) VALUES (?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);

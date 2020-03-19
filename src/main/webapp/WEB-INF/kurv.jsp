@@ -54,11 +54,11 @@
                     </table>
                     <div class="col-sm">
                         <form action="FrontController" method="post">
-                            <input type="hidden" name="taget" value="buy">
+                            <input type="hidden" name="target" value="buy">
                         <button type="submit" class="btn btn-primary float-right">Køb</button>
                         </form>
                         <form action="FrontController" method="post">
-                            <input type="hidden" name="taget" value="save">
+                            <input type="hidden" name="target" value="save">
                         <button type="submit" class="btn btn-primary float-right mr-4">Gem Ordre</button>
                         </form>
                     </div>
