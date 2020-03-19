@@ -1,7 +1,9 @@
 package PresentationLayer;
 
+import FunctionLayer.BottomAndTopping;
 import FunctionLayer.CupCake;
 import FunctionLayer.LoginSampleException;
+import FunctionLayer.Useres;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -15,13 +17,13 @@ public class AddCupCake extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 
         HttpSession session = request.getSession();
+        ServletContext servletContext = request.getServletContext();
 
-        String bund = request.getParameter("bundTopping");
-        String top = request.getParameter("topTopping");
-        String antal = request.getParameter("antal");
+        int bottom = Integer.parseInt(request.getParameter("bottom"));
+        int topping = Integer.parseInt(request.getParameter("topping"));
+        String quantity = request.getParameter("quantity");
 
-        System.out.println(antal);
-        if (antal == ""){
+        if (quantity == ""){
             System.out.println("if statement virker");
             request.setAttribute("besked", "Du har ikke valgt antal");
             return "WEB-INF/Forside";
@@ -34,11 +36,10 @@ public class AddCupCake extends Command {
                 System.out.println("kurvlist init");
             }
 
-            CupCake cupCake = new CupCake(bund, top, Integer.parseInt(antal));
-
+            CupCake cupCake = new CupCake(((List<BottomAndTopping>) servletContext.getAttribute("bottomList")).get(bottom), ((List<BottomAndTopping>) servletContext.getAttribute("toppingList")).get(topping), Integer.parseInt(quantity));
             ((List<CupCake>) session.getAttribute("kurvListe")).add(cupCake);
+            System.out.println(cupCake.toString());
 
-            System.out.println("cupcake init");
 
         } catch (Exception e){
             System.out.println("kunne ikke tilføge cupcake til Kurv");
