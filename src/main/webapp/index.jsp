@@ -31,10 +31,10 @@
                     <form name="login" action="FrontController" method="post">
                         <input type="hidden" name="target" value="login">
                         Email:<br>
-                        <input type="text" name="email" placeholder="Skriv din email her">
+                        <input type="text" name="email" placeholder="Skriv din email her" value="eko@test.dk">
                         <br>
                         Kodeord:<br>
-                        <input type="password" name="password" placeholder="Skriv dit kodeord her">
+                        <input type="password" name="password" placeholder="Skriv dit kodeord her" value="eko">
                         <br>
                         <input type="submit" value="Log på">
 

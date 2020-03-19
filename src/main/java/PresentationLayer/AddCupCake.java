@@ -35,6 +35,7 @@ public class AddCupCake extends Command {
             }
 
             CupCake cupCake = new CupCake(bund, top, Integer.parseInt(antal));
+
             ((List<CupCake>) session.getAttribute("kurvListe")).add(cupCake);
 
             System.out.println("cupcake init");
