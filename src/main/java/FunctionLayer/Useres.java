@@ -49,4 +49,13 @@ public class Useres {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Useres{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

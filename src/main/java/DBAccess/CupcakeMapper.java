@@ -54,14 +54,15 @@ public class CupcakeMapper {
         }
     }
 
-    public static void insertOrderLine(Useres user, List<CupCake> cupcakeList) throws CupcakeException {
+    public static void insertOrderLine(Useres user, ArrayList<CupCake> cupcakeList) throws CupcakeException {
+        int orderId = insertOrder(user);
         try {
-            insertOrder(user);
+            System.out.println("virker");
             Connection con = Connector.connection();
             String SQL = "INSERT INTO cupcakeproject.ordersline (ordersId, quantity, sumNumber, toppingId, bottomId) VALUES (?,?,?,?, ?)";
             for (CupCake cup : cupcakeList) {
                 PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-                ps.setInt(1, user.getId());
+                ps.setInt(1, orderId);
                 ps.setInt(2, cup.getQuantity());
                 ps.setInt(3, cup.getSum());
                 ps.setInt(4, cup.getTopping().getId());
@@ -69,41 +70,31 @@ public class CupcakeMapper {
                 ps.executeUpdate();
             }
         } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println("insert to orderline db failed");
             throw new CupcakeException(ex.getMessage());
         }
     }
 
-    public static void getOrderLine() {
-
-    }
 
 
-    public static void insertOrder(Useres user) throws CupcakeException {
+    public static int insertOrder(Useres user) throws CupcakeException {
+        int id = 0;
+        System.out.println(user.toString());
         try {
+            System.out.println("virker");
             Connection con = Connector.connection();
             String SQL = "INSERT INTO cupcakeproject.orders (customerId) VALUES (?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, user.getId());
+            System.out.println("efter execute");
             ps.executeUpdate();
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new CupcakeException(ex.getMessage());
-        }
-    }
-
-    public static int getOrderId(Useres user) throws CupcakeException {
-        int id = 0;
-        try {
-            Connection con = Connector.connection();
-            String SQL = "SELECT ordersId FROM cupcakeproject.orders WHERE customerId = ?";
-            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            ResultSet ids = ps.executeQuery();
+            ResultSet ids = ps.getGeneratedKeys();
             ids.next();
             id = ids.getInt(1);
+            return id;
         } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println("insert to orders database failed");
             throw new CupcakeException(ex.getMessage());
         }
-        return id;
     }
-
-
 }

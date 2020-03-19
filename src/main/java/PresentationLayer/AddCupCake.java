@@ -9,8 +9,11 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+
+import static DBAccess.CupcakeMapper.insertOrderLine;
 
 public class AddCupCake extends Command {
     @Override
@@ -24,21 +27,18 @@ public class AddCupCake extends Command {
         String quantity = request.getParameter("quantity");
 
         if (quantity == ""){
-            System.out.println("if statement virker");
             request.setAttribute("besked", "Du har ikke valgt antal");
             return "WEB-INF/Forside";
         }
 
         try {
             if ((List<CupCake>) session.getAttribute("kurvListe") == null) {
-                List<CupCake> kurvListe = new ArrayList<>();
+                ArrayList<CupCake> kurvListe = new ArrayList<>();
                 session.setAttribute("kurvListe", kurvListe);
-                System.out.println("kurvlist init");
             }
 
-            CupCake cupCake = new CupCake(((List<BottomAndTopping>) servletContext.getAttribute("bottomList")).get(bottom), ((List<BottomAndTopping>) servletContext.getAttribute("toppingList")).get(topping), Integer.parseInt(quantity));
+            CupCake cupCake = new CupCake(((ArrayList<BottomAndTopping>) servletContext.getAttribute("bottomList")).get(bottom), ((ArrayList<BottomAndTopping>) servletContext.getAttribute("toppingList")).get(topping), Integer.parseInt(quantity));
             ((List<CupCake>) session.getAttribute("kurvListe")).add(cupCake);
-            System.out.println(cupCake.toString());
 
 
         } catch (Exception e){
@@ -48,6 +48,6 @@ public class AddCupCake extends Command {
         }
 
 
-        return "/WEB-INF/" + "kurv";
+        return "/WEB-INF/kurv";
     }
 }

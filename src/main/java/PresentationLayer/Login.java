@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static DBAccess.CupcakeMapper.getBottom;
@@ -36,8 +37,8 @@ public class Login extends Command {
 
         //Denne kode viser varianterne
         try {
-            servletContext.setAttribute("toppingList", (List<BottomAndTopping>) getTopping());
-            servletContext.setAttribute("bottomList", (List<BottomAndTopping>) getBottom());
+            servletContext.setAttribute("toppingList", (ArrayList<BottomAndTopping>) getTopping());
+            servletContext.setAttribute("bottomList", (ArrayList<BottomAndTopping>) getBottom());
         } catch (CupcakeException e) {
             e.printStackTrace();
         }

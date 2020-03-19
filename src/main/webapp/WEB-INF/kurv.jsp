@@ -19,13 +19,6 @@
 
         <div class="col-lg"></div>
         <ul class="nav navbar justify-content-end mt-2 w-100" style="background-color: #eee;">
-            <li class="nav-item mr-auto">
-            <form name="goBack" action="FrontController" method="post">
-                <input type="hidden" name="target" value="goBack">
-                <input type="submit" value="Tilbage">
-
-            </form>
-            </li>
             <li class="nav-item">
                 <a class="nav-link">${sessionScope.email}</a>
             </li>
@@ -51,8 +44,8 @@
                         <c:forEach var="element" items="${sessionScope.kurvListe}">
                             <tr>
                                 <th scope="row"></th>
-                                <td>${element.bottom}</td>
-                                <td>${element.topping}</td>
+                                <td>${element.bottom.name}</td>
+                                <td>${element.topping.name}</td>
                                 <td>${element.quantity}</td>
                                 <td>${element.sum}</td>
                             </tr>
@@ -61,11 +54,11 @@
                     </table>
                     <div class="col-sm">
                         <form action="FrontController" method="post">
-                            <input type="hidden" name="taget" value="buy">
+                            <input type="hidden" name="target" value="buy">
                         <button type="submit" class="btn btn-primary float-right">Køb</button>
                         </form>
                         <form action="FrontController" method="post">
-                            <input type="hidden" name="taget" value="save">
+                            <input type="hidden" name="target" value="save">
                         <button type="submit" class="btn btn-primary float-right mr-4">Gem Ordre</button>
                         </form>
                     </div>
