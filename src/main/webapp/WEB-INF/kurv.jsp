@@ -44,10 +44,10 @@
                         <c:forEach var="element" items="${sessionScope.kurvListe}">
                             <tr>
                                 <th scope="row"></th>
-                                <td>${element.bund}</td>
-                                <td>${element.top}</td>
-                                <td>${element.antal}</td>
-                                <td>${element.pris}</td>
+                                <td>${element.bottom.name}</td>
+                                <td>${element.topping.name}</td>
+                                <td>${element.quantity}</td>
+                                <td>${element.sum}</td>
                             </tr>
                         </c:forEach>
                         </tbody>
