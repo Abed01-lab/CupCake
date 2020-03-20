@@ -12,6 +12,7 @@ import java.util.List;
 
 import static DBAccess.CupcakeMapper.getBottom;
 import static DBAccess.CupcakeMapper.getTopping;
+import static DBAccess.UsersMapper.createUserList;
 
 /**
  The purpose of Login is to...
@@ -43,9 +44,18 @@ public class Login extends Command {
             e.printStackTrace();
         }
 
+        if(session.getAttribute("role").equals("customer")) {
+            return "WEB-INF/Forside";
+        }
 
-
-        return "WEB-INF/Forside";
+        ArrayList<ReturnedUseres> list = null;
+        try {
+            list = createUserList();
+        } catch (LoginSampleException e) {
+            e.printStackTrace();
+        }
+        session.setAttribute("customerList", list);
+        return "WEB-INF/adminLoggetInd";
     }
 
 }
