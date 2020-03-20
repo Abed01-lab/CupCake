@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>CupcCake</title>
+    <title>Olskers Cupcakes</title>
 </head>
 <body>
 
@@ -18,6 +18,13 @@
 
         <div class="col-lg"></div>
         <ul class="nav navbar justify-content-end mt-2 w-100" style="background-color: #eee;">
+            <li class="nav-item mr-auto">
+                <form name="logout" action="FrontController" method="post">
+                    <input type="hidden" name="target" value="logout">
+                    <input type="submit" value="Log ud">
+
+                </form>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" >${sessionScope.email}</a>
             </li>
