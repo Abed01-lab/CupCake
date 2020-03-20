@@ -1,7 +1,10 @@
 package PresentationLayer;
 
 import FunctionLayer.LoginSampleException;
+
+import java.io.IOException;
 import java.util.HashMap;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +20,8 @@ abstract class Command {
         commands.put( "buy", new Buy());
         commands.put( "save", new Save());
         commands.put( "kundeBestillingBekræftigelse", new kundeBestillingBekræftigelse());
+        commands.put("goBack", new GoBack());
+        commands.put("logout", new Logout());
     }
 
     static Command from( HttpServletRequest request ) {
@@ -27,7 +32,7 @@ abstract class Command {
         return commands.getOrDefault(targetName, new UnknownCommand() );   // unknowncommand er default.
     }
 
-    abstract String execute( HttpServletRequest request, HttpServletResponse response ) 
-            throws LoginSampleException;
+    abstract String execute( HttpServletRequest request, HttpServletResponse response )
+            throws LoginSampleException, ServletException, IOException;
 
 }

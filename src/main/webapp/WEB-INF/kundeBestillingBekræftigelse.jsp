@@ -15,7 +15,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Bestillings bekræftigelse </title>
+    <title>Ordrebekræftelse </title>
 </head>
 <body>
 <div class="container">
@@ -25,17 +25,21 @@
         <div class="col-lg"></div>
         <ul class="nav navbar justify-content-center mt-2 w-100" style="background-color: #eee;">
             <li class="nav-item mr-auto">
-                <a class="nav-link" href="#">Tilbage til forsiden</a>
+            <form name="goBack" action="FrontController" method="post">
+                <input type="hidden" name="target" value="goBack">
+                <input type="submit" value="Tilbage til forsiden">
+
+            </form>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Log ind</a>
+                <a class="nav-link"> ${sessionScope.email}</a>
             </li>
             <li class="nav-item mr-lg-5">
                 <a class="nav-link" href="#">Kurv</a>
             </li>
         </ul>
         <div class="col-lg-12 w-100 h-100 p-3 mt-2" style="background-color: #eee;">
-            <h3>Din ordre er nu bestilt og kan afhentes på Olsker Cupcakes på Bornholm.</h3>
+            <h3>Din ordre er nu bestilt og kan afhentes hos Olsker Cupcakes på Bornholm.</h3>
 
         </div>
     </div>
