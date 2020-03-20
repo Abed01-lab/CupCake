@@ -1,6 +1,9 @@
 package DBAccess;
 
-import FunctionLayer.*;
+import FunctionLayer.BottomAndTopping;
+import FunctionLayer.CupCake;
+import FunctionLayer.CupcakeException;
+import FunctionLayer.Useres;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -76,17 +79,31 @@ public class CupcakeMapper {
     }
 
 
+    public static int getSum() throws CupcakeException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT ";
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, user.getId());
+            ps.executeUpdate();
+            ResultSet ids = ps.getGeneratedKeys();
+            ids.next();
+            id = ids.getInt(1);
+            return id;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println("insert to orders database failed");
+            throw new CupcakeException(ex.getMessage());
+        }
+    }
+
 
     public static int insertOrder(Useres user) throws CupcakeException {
         int id = 0;
-        System.out.println(user.toString());
         try {
-            System.out.println("virker");
             Connection con = Connector.connection();
             String SQL = "INSERT INTO cupcakeproject.orders (customerId) VALUES (?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, user.getId());
-            System.out.println("efter execute");
             ps.executeUpdate();
             ResultSet ids = ps.getGeneratedKeys();
             ids.next();

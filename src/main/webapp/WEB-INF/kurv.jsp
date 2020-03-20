@@ -48,13 +48,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="element" items="${sessionScope.kurvListe}">
+                        <c:forEach var="element" items="${sessionScope.kurvListe}" varStatus="loop">
                             <tr>
-                                <th scope="row"></th>
+                                <td>${loop.index + 1}</td>
                                 <td>${element.bottom.name}</td>
                                 <td>${element.topping.name}</td>
                                 <td>${element.quantity}</td>
-                                <td>${element.sum}</td>
+                                <td>${element.sum},-</td>
                             </tr>
                         </c:forEach>
                         </tbody>
