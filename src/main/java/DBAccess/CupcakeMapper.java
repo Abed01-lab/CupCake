@@ -79,23 +79,6 @@ public class CupcakeMapper {
     }
 
 
-    public static int getSum() throws CupcakeException {
-        try {
-            Connection con = Connector.connection();
-            String SQL = "SELECT ";
-            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, user.getId());
-            ps.executeUpdate();
-            ResultSet ids = ps.getGeneratedKeys();
-            ids.next();
-            id = ids.getInt(1);
-            return id;
-        } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println("insert to orders database failed");
-            throw new CupcakeException(ex.getMessage());
-        }
-    }
-
 
     public static int insertOrder(Useres user) throws CupcakeException {
         int id = 0;
