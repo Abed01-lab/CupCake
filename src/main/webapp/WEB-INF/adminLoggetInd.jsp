@@ -41,13 +41,50 @@
             </li>
         </ul>
         <div class="col-lg-12 w-100 h-100 p-3 mt-2" style="background-color: #eee;">
-            <h3>Du er nu logget ind som adminstrator</h3>
 
-        </div>
-    </div>
-</div>
-<div class="col-lg"></div>
-</div>
+    <h4>Adminside</h4>
+    <div class="row">
+        <div class="col-sm">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Customer ID</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Balance</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="element" items="${sessionScope.customerList}">
+                    <tr>
+                        <th scope="row"></th>
+                        <td>${element.id}</td>
+                        <td>${element.email}</td>
+                        <td>${element.balance}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <form action="FrontController" method="post">
+                <input type="hidden" name="target" value="addBalance">
+                ${requestScope.besked}
+            <div class="row mt-4">
+            <div class="col-sm">
+                <select class="form-control" name="returnEmail">
+                    <c:forEach var="element" items="${sessionScope.customerList}">
+                        <option value="${element.email}">${element.email}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="col-sm">
+                <input class="form-control" name="balanceAmount" placeholder="0">
+            </div>
+            <div class="col-sm">
+                <button type="submit" class="btn btn-primary">Indsæt penge</button>
+            </div></div></form>
+            </div></div>
+    </div></div>
+</div></div>
 </div>
 
 

@@ -1,13 +1,13 @@
 package DBAccess;
 
-import FunctionLayer.Useres;
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  The purpose of UserMapper is to...
@@ -54,6 +54,54 @@ public class UsersMapper {
             }
         } catch ( ClassNotFoundException | SQLException ex ) {
             throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    public static ArrayList<ReturnedUseres> createUserList() throws LoginSampleException {
+        ArrayList<ReturnedUseres> users = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM cupcakeproject.customer "
+                    + "WHERE role = 'customer'";
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("customerId");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                String role = rs.getString("role");
+                int balance = rs.getInt("balance");
+                ReturnedUseres user = new ReturnedUseres(id, email, password, role, balance);
+                users.add(user);
+
+            }
+            return users;
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    public static void addUserBalance(int balanceToAdd, String email) throws SQLException {
+        int balance = 0;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM cupcakeproject.customer "
+                    + "WHERE email = '" + email + "'";
+
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                balance = rs.getInt("balance");
+            }
+
+            balance = balance + balanceToAdd;
+
+            String SQLTwo = "UPDATE customer SET balance = '" + balance + "' WHERE email = '" + email + "'";
+            ps = con.prepareStatement(SQLTwo, Statement.RETURN_GENERATED_KEYS);
+            ps.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException ex){
+            throw new SQLException(ex.getMessage());
         }
     }
 

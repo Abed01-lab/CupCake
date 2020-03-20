@@ -22,6 +22,7 @@ abstract class Command {
         commands.put( "kundeBestillingBekræftigelse", new kundeBestillingBekræftigelse());
         commands.put("goBack", new GoBack());
         commands.put("logout", new Logout());
+        commands.put("addBalance", new AddBalance());
     }
 
     static Command from( HttpServletRequest request ) {
