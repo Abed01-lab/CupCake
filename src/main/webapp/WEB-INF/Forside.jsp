@@ -21,7 +21,7 @@
             <li class="nav-item mr-auto">
                 <form name="logout" action="FrontController" method="post">
                     <input type="hidden" name="target" value="logout">
-                    <input type="submit" value="Log ud">
+                    <input type="submit" class="btn btn-link" value="Log ud">
 
                 </form>
             </li>
@@ -29,15 +29,20 @@
                 <a class="nav-link" >${sessionScope.email}</a>
             </li>
             <li class="nav-item mr-lg-5">
-                <a class="nav-link" href="#">Kurv</a>
+                <form name="kurv" action="FrontController" method="post">
+                    <input type="hidden" name="target" value="kurv">
+                    <input type="submit" class="btn btn-link" value="Kurv">
+                </form>
+
             </li>
         </ul>
         <div class="col-lg-12 w-100 h-100 p-3 mt-2" style="background-color: #eee;">
             <form action="FrontController" method="post">
                 <input type="hidden" name="target" value="addCupCake">
-                <h4>Velkommen ombord</h4>
-                <h4>Øens bedste cupcakes. Vælg Topping og bestil her:</h4>
-                ${requestScope.besked}
+                <h2>Velkommen ombord</h2>
+                <h4>Øens bedste cupcakes. Vælg og bestil her:</h4>
+                <br>
+                <p style= "font-style: italic">${requestScope.besked}</p>
                 <div class="row mt-4">
                     <div class="col-sm">
                         <select class="form-control" name="bottom">

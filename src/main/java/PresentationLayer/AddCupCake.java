@@ -27,7 +27,7 @@ public class AddCupCake extends Command {
         String quantity = request.getParameter("quantity");
 
         if (quantity == ""){
-            request.setAttribute("besked", "Du har ikke valgt antal");
+            request.setAttribute("besked", "* Vælg venligst et antal");
             return "WEB-INF/Forside";
         }
 
@@ -42,7 +42,7 @@ public class AddCupCake extends Command {
 
 
         } catch (Exception e){
-            System.out.println("kunne ikke tilføge cupcake til Kurv");
+            System.out.println("kunne ikke tilføje cupcake til kurv");
             request.setAttribute("besked", "noget gik galt");
             return "index";
         }
