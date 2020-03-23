@@ -29,7 +29,6 @@
                 <a class="nav-link" >${sessionScope.email}</a>
             </li>
             <li class="nav-item mr-lg-5">
-                <a class="nav-link" href="#">Kurv</a>
                 <form name="kurv" action="FrontController" method="post">
                     <input type="hidden" name="target" value="kurv">
                     <input type="submit" class="btn btn-link" value="Kurv">
