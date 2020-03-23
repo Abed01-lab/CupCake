@@ -23,6 +23,7 @@
             </ul>
 
             <div class="col-lg-12 w-100 h-100 p-3 mt-2" style="background-color: #eee;">
+                ${requestScope.besked1}
         <table>
 
             <tr><td>Log ind</td>

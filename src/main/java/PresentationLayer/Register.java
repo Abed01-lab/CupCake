@@ -22,7 +22,8 @@ public class Register extends Command {
             session.setAttribute("email",email);
             session.setAttribute( "user", useres);
             session.setAttribute( "role", useres.getRole() );
-            return useres.getRole() + "page";
+            request.setAttribute("besked1", "Bruger oprettet!");
+            return "index";
         } else {
             throw new LoginSampleException( "the two passwords did not match" );
         }
