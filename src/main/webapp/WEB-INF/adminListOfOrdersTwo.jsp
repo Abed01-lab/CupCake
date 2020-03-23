@@ -54,8 +54,8 @@
 
             <h4>Adminside</h4>
 
-<c:forEach var="element" items="${sessionScope.listOfOrders}" varStatus="loop">
             <div class="panel-group">
+                <c:forEach var="element" items="${sessionScope.listOfOrders}" varStatus="loop">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -75,8 +75,9 @@
                         </c:forEach>
                         </ul>
                     </div>
-            </div>
+                </div>
 </c:forEach>
+            </div>
 <br><br>
 
             <table class="table">
