@@ -34,9 +34,6 @@
             <li class="nav-item">
                 <a class="nav-link"> ${sessionScope.email}</a>
             </li>
-            <li class="nav-item mr-lg-5">
-                <a class="nav-link" href="#">Kurv</a>
-            </li>
         </ul>
         <div class="col-lg-12 w-100 h-100 p-3 mt-2" style="background-color: #eee;">
             <h3>Din ordre er nu bestilt og kan afhentes hos Olsker Cupcakes på Bornholm.</h3>
