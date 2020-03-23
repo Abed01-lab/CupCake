@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Logout extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
         if(session != null)
             session.invalidate();
         request.getRequestDispatcher("/index.jsp").forward(request,response);
