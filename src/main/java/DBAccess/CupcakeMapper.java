@@ -1,9 +1,6 @@
 package DBAccess;
 
-import FunctionLayer.BottomAndTopping;
-import FunctionLayer.CupCake;
-import FunctionLayer.CupcakeException;
-import FunctionLayer.Useres;
+import FunctionLayer.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -79,7 +76,6 @@ public class CupcakeMapper {
     }
 
 
-
     public static int insertOrder(Useres user) throws CupcakeException {
         int id = 0;
         try {
@@ -97,4 +93,59 @@ public class CupcakeMapper {
             throw new CupcakeException(ex.getMessage());
         }
     }
+
+    public static ArrayList<Order> getAllOrders() throws CupcakeException {
+        ArrayList<Order> orders = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM cupcakeproject.ordersline";
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int orderslineId = rs.getInt("orderlineId");
+                int quantity = rs.getInt("quantity");
+                int sum = rs.getInt("sumNumber");
+                int toppingId = rs.getInt("toppingId");
+                int bottomId = rs.getInt("bottomId");
+                Order newOrder = new Order(orderslineId, quantity, toppingId, bottomId, sum);
+                orders.add(newOrder);
+            }
+            return orders;
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new CupcakeException(ex.getMessage());
+        }
+    }
+
+    public static ArrayList<OverOrder> getOrders() throws CupcakeException {
+        ArrayList<OverOrder> orders = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM cupcakeproject.orders";
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int ordersId = rs.getInt("ordersId");
+                int customerId = rs.getInt("customerId");
+                OverOrder overOrder = new OverOrder(customerId, ordersId);
+                String SQL2 = "SELECT * FROM cupcakeproject.ordersline " +
+                        "WHERE ordersId = '" + ordersId + "'";
+                            PreparedStatement ps2 = con.prepareStatement(SQL2, Statement.RETURN_GENERATED_KEYS);
+                            ResultSet rs2 = ps2.executeQuery();
+                                while(rs2.next()){
+                                    int orderslineId = rs2.getInt("orderlineId");
+                                    int quantity = rs2.getInt("quantity");
+                                    int sum = rs2.getInt("sumNumber");
+                                    int toppingId = rs2.getInt("toppingId");
+                                    int bottomId = rs2.getInt("bottomId");
+                                    Order newOrder = new Order(orderslineId, quantity, toppingId, bottomId, sum);
+                                    overOrder.getOrderline().add(newOrder);
+                                }
+                                orders.add(overOrder);
+            }
+            return orders;
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new CupcakeException(ex.getMessage());
+        }
+    }
+
 }
