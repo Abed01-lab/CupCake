@@ -35,7 +35,7 @@
                         Kodeord:<br>
                         <input type="password" name="password" placeholder="Skriv dit kodeord her" value="eko">
                         <br>
-                        <input type="submit" value="Log på">
+                        <input type="submit" class="btn btn-light mt-2" value="Log på">
 
                     </form>
                 </td>
@@ -53,7 +53,7 @@
                         Gentag Kodeord:<br>
                         <input type="password" name="password2" value="">
                         <br>
-                        <input type="submit" value="Registrer">
+                        <input type="submit" class="btn btn-light mt-2" value="Registrer">
 
                     </form>
                 </td>

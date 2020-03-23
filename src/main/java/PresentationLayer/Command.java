@@ -23,6 +23,8 @@ abstract class Command {
         commands.put("goBack", new GoBack());
         commands.put("logout", new Logout());
         commands.put("addBalance", new AddBalance());
+        commands.put("deleteCupcake", new DeleteCupcake());
+        commands.put("kurv", new Kurv());
     }
 
     static Command from( HttpServletRequest request ) {

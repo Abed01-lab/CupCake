@@ -22,15 +22,12 @@
             <li class="nav-item mr-auto">
                 <form name="goBack" action="FrontController" method="post">
                     <input type="hidden" name="target" value="goBack">
-                    <input type="submit" value="Tilbage til forsiden">
+                    <input type="submit" class="btn btn-link" value="Tilbage til forsiden">
 
                 </form>
             </li>
             <li class="nav-item">
                 <a class="nav-link">${sessionScope.email}</a>
-            </li>
-            <li class="nav-item mr-lg-5">
-                <a class="nav-link" href="#">Kurv</a>
             </li>
         </ul>
         <div class="col-lg-12 w-100 h-100 p-3 mt-2" style="background-color: #eee;">
@@ -45,6 +42,7 @@
                             <th scope="col">Top</th>
                             <th scope="col">Antal</th>
                             <th scope="col">Pris</th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -55,6 +53,13 @@
                                 <td>${element.topping.name}</td>
                                 <td>${element.quantity}</td>
                                 <td>${element.sum},-</td>
+                                <td>
+                                    <form action="FrontController" method="post">
+                                    <input type="hidden" name="target" value="deleteCupcake">
+                                    <input type="hidden" name="rowNumber" value="${loop.index}">
+                                    <button type="submit" class="btn btn-outline-danger">Fjern</button>
+                                    </form>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -63,10 +68,6 @@
                         <form action="FrontController" method="post">
                             <input type="hidden" name="target" value="buy">
                         <button type="submit" class="btn btn-primary float-right">Køb</button>
-                        </form>
-                        <form action="FrontController" method="post">
-                            <input type="hidden" name="target" value="save">
-                        <button type="submit" class="btn btn-primary float-right mr-4">Gem Ordre</button>
                         </form>
                     </div>
                 </div>

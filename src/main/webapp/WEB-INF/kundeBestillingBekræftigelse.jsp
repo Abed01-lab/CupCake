@@ -27,7 +27,7 @@
             <li class="nav-item mr-auto">
             <form name="goBack" action="FrontController" method="post">
                 <input type="hidden" name="target" value="goBack">
-                <input type="submit" value="Tilbage til forsiden">
+                <input type="submit" class="btn btn-link" value="Tilbage til forsiden">
 
             </form>
             </li>
