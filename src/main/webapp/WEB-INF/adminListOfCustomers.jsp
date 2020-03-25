@@ -16,7 +16,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Log ind</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Kunder</title>
 </head>
 <body>
 <div class="container">
@@ -50,7 +51,30 @@
         <div class="col-lg-12 w-100 h-100 p-3 mt-2" style="background-color: #eee;">
 
             <h4>Adminside</h4>
-            CUSTOMERS
+
+
+<div class="panel-group">
+<c:forEach var="element" items="${sessionScope.listOfCustomers}" varStatus="loop">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            <h4 class="panel-title">
+                 <a data-toggle="collapse" href="#collapse1">Customer ${element.id} : ${element.name}</a></h4>
+        </div>
+    <div id="collapse1" class="panel-collapse collapse">
+    <ul class="list-group">
+    <c:forEach var="element2" items="${sessionScope.listOfCustomers.get(loop.index).orders}" varStatus="loop">
+
+        <li class="list-group-item">
+            Order ID: <td>${element2.ordersId}</td>
+        </li>
+
+    </c:forEach>
+    </ul>
+    </div>
+    </div>
+</c:forEach>
+    </div>
+    </div>
         </div>
     </div>
 </div>

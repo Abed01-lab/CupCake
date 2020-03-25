@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Log ind</title>
+    <title>Ordrer</title>
 </head>
 <body>
 <div class="container">
@@ -50,61 +50,47 @@
                 </form>
             </li>
         </ul>
+
         <div class="col-lg-12 w-100 h-100 p-3 mt-2" style="background-color: #eee;">
 
-            <h4>Adminside</h4>
 
-            <div class="panel-group">
-                <c:forEach var="element" items="${sessionScope.listOfOrders}" varStatus="loop">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse1">Order ID: ${element.ordersId}</a>
-                        </h4>
-                    </div>
-                    <div id="collapse1" class="panel-collapse collapse">
-                        <ul class="list-group">
-                        <c:forEach var="element2" items="${sessionScope.listOfOrders.get(loop.index).orderline}" varStatus="loop">
+            <ul class="list-group">
+            <c:forEach var="element" items="${sessionScope.listOfOrders}" varStatus="loop">
+                <li class="list-group-item">Order ID: ${element.ordersId} <span class="badge">${sessionScope.listOfOrders.get(loop.index).orderline.size()}</span></li>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <table class="table">
+                            <thead>
+                            <tr>
 
-                            <li class="list-group-item">
-                                Orderline ID: <td>${element2.orderlineId}</td>
-                                <br>
-                                <td>${element2.quantity}</td> cupcakes af kombinationen ${element2.topping} og ${element2.bottom} til ${element2.sumNumber}kr.</td>
-                            </li>
+                                <th scope="col">Orderline ID</th>
+                                <th scope="col">Antal</th>
+                                <th scope="col">Pris</th>
+                                <th scope="col">Topping</th>
+                                <th scope="col">Bottom</th>
+                                <th scope="col"></th>
 
-                        </c:forEach>
-                        </ul>
-                    </div>
-                </div>
-</c:forEach>
-            </div>
-<br><br>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="element2" items="${sessionScope.listOfOrders.get(loop.index).orderline}" varStatus="loop">
+                                <tr>
 
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">Order ID</th>
-                    <th scope="col">Customer ID</th>
-                </tr>
-                </thead>
-                <tbody>
+                                    <td>${element2.orderlineId}</td>
+                                    <td>${element2.quantity}</td>
+                                    <td>${element2.sumNumber}</td>
+                                    <td>${element2.topping}</td>
+                                    <td>${element2.bottom}</td>
 
-                <c:forEach var="element" items="${sessionScope.listOfOrders}" varStatus="loop">
-                    <tr>
-                        <td>${element.ordersId}</td>
-                        <td>${element.customerId}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </li>
+                </ul>
+            </c:forEach>
+            </ul>
 
-                        <c:forEach var="element2" items="${sessionScope.listOfOrders.get(loop.index).orderline}">
-                                   <td>${element2.sumNumber}</td>
-                        </c:forEach>
-
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-
-        </div>
-    </div>
-</div>
+</div></div></div>
 </body>
 </html>

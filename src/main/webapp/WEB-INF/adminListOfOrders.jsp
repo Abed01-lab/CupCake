@@ -85,6 +85,29 @@
                 </tbody>
             </table>
 
+<div class="panel-group">
+<c:forEach var="element" items="${sessionScope.listOfOrders}" varStatus="loop">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+    <h4 class="panel-title">
+    <a data-toggle="collapse" href="#collapse1">Order ID: ${element.ordersId}</a>
+    </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse">
+    <ul class="list-group">
+    <c:forEach var="element2" items="${sessionScope.listOfOrders.get(loop.index).orderline}" varStatus="loop">
+
+        <li class="list-group-item">
+            Orderline ID: <td>${element2.orderlineId}</td>
+            <br>
+            <td>${element2.quantity}</td> cupcakes af kombinationen ${element2.topping} og ${element2.bottom} til ${element2.sumNumber}kr.</td>
+        </li>
+
+    </c:forEach>
+    </ul>
+    </div>
+    </div>
+
         </div>
     </div>
 </div>

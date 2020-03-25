@@ -105,6 +105,33 @@ public class UsersMapper {
         }
     }
 
+    public static ArrayList<OverCustomer> getCustomers() throws CupcakeException {
+        ArrayList<OverCustomer> customers = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM cupcakeproject.customer";
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int customerId = rs.getInt("customerId");
+                String email = rs.getString("email");
+                OverCustomer customer = new OverCustomer(customerId, email);
+                String SQL2 = "SELECT * FROM cupcakeproject.orders " +
+                        "WHERE customerId = '" + customerId + "'";
+                PreparedStatement ps2 = con.prepareStatement(SQL2, Statement.RETURN_GENERATED_KEYS);
+                ResultSet rs2 = ps2.executeQuery();
+                while(rs2.next()){
+                    int ordersId = rs2.getInt("ordersId");
+                    OverOrder newOverOrder = new OverOrder(customerId, ordersId);
+                    customer.getOrders().add(newOverOrder);
+                }
+                customers.add(customer);
+            }
+            return customers;
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new CupcakeException(ex.getMessage());
+        }
+    }
 
 
 }
