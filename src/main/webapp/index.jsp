@@ -24,6 +24,13 @@
 
             <div class="col-lg-12 w-100 h-100 p-3 mt-2" style="background-color: #eee;">
                 ${requestScope.besked1}
+
+                    <c:if test = "${requestScope.error!= null}" >
+
+                        ${requestScope.error}
+                        ${sessionScope.error}
+
+                    </c:if>
         <table>
 
             <tr><td>Log ind</td>

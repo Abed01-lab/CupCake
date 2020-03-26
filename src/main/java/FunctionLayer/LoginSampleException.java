@@ -1,5 +1,9 @@
 package FunctionLayer;
 
+import java.util.ArrayList;
+
+import static DBAccess.UsersMapper.createUserList;
+
 /**
  * The purpose of LoginSampleException is to...
  * @author kasper

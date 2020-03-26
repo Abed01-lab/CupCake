@@ -50,7 +50,14 @@ public class UsersMapper {
                 useres.setId( id );
                 return useres;
             } else {
-                throw new LoginSampleException( "Could not validate user" );
+
+                ArrayList<ReturnedUseres> list = createUserList();
+                for(int i = 0; i < list.size(); i++){
+                    if(list.get(i).getEmail().equals(email) && !(list.get(i).getPassword().equals(password))){
+                        throw new LoginSampleException( "Enter the correct password." );
+                    }
+                }
+                throw new LoginSampleException( "Could not validate user. Please register." );
             }
         } catch ( ClassNotFoundException | SQLException ex ) {
             throw new LoginSampleException(ex.getMessage());
