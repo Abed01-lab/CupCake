@@ -50,32 +50,24 @@
         </ul>
         <div class="col-lg-12 w-100 h-100 p-3 mt-2" style="background-color: #eee;">
 
-            <h4>Adminside</h4>
+            <ul class="list-group">
+                <c:forEach var="element" items="${sessionScope.listOfCustomers}" varStatus="loop">
+                    <li class="list-group-item">Customer ${element.id} : ${element.name} </li>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <c:forEach var="element2" items="${sessionScope.listOfCustomers.get(loop.index).orders}" varStatus="loop">
+
+                        <li class="list-group-item">
+                            Order ID: <td>${element2.ordersId}</td>
+                        </li>
+
+                        </c:forEach>
+                        </li>
+                    </ul>
+                </c:forEach>
+            </ul>
 
 
-<div class="panel-group">
-<c:forEach var="element" items="${sessionScope.listOfCustomers}" varStatus="loop">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-            <h4 class="panel-title">
-                 <a data-toggle="collapse" href="#collapse1">Customer ${element.id} : ${element.name}</a></h4>
-        </div>
-    <div id="collapse1" class="panel-collapse collapse">
-    <ul class="list-group">
-    <c:forEach var="element2" items="${sessionScope.listOfCustomers.get(loop.index).orders}" varStatus="loop">
-
-        <li class="list-group-item">
-            Order ID: <td>${element2.ordersId}</td>
-        </li>
-
-    </c:forEach>
-    </ul>
-    </div>
-    </div>
-</c:forEach>
-    </div>
-    </div>
-        </div>
     </div>
 </div>
 </body>
