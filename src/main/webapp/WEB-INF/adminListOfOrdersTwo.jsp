@@ -37,6 +37,12 @@
             </li>
 
             <li class="nav-item mr-lg-5">
+                <form name="GoToAddBalance" action="FrontController" method="post">
+                    <input type="hidden" name="target" value="GoToAddBalance">
+                    <input type="submit" class="btn btn-link" value="Opdater saldo">
+                </form>
+            </li>
+            <li class="nav-item mr-lg-5">
                 <form name="GoToOrdersTwo" action="FrontController" method="post">
                     <input type="hidden" name="target" value="GoToOrdersTwo">
                     <input type="submit" class="btn btn-link" value="Ordrer">

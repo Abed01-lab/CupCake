@@ -28,6 +28,7 @@ abstract class Command {
         commands.put("GoToCustomers", new GoToCustomers());
         commands.put("GoToOrders", new GoToOrders());
         commands.put("GoToOrdersTwo", new GoToOrdersTwo());
+        commands.put("GoToAddBalance", new GoToAddBalance());
     }
 
     static Command from( HttpServletRequest request ) {
