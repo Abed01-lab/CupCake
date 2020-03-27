@@ -36,9 +36,9 @@
                 </form>
             </li>
 
-            <li class="nav-item">
-                <form name="GoToOrders" action="FrontController" method="post">
-                    <input type="hidden" name="target" value="GoToOrders">
+            <li class="nav-item mr-lg-5">
+                <form name="GoToOrdersTwo" action="FrontController" method="post">
+                    <input type="hidden" name="target" value="GoToOrdersTwo">
                     <input type="submit" class="btn btn-link" value="Ordrer">
                 </form>
             </li>
@@ -50,7 +50,6 @@
                 </form>
             </li>
         </ul>
-
         <div class="col-lg-12 w-100 h-100 p-3 mt-2" style="background-color: #eee;">
 
 
