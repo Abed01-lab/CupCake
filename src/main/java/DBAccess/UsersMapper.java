@@ -111,6 +111,28 @@ public class UsersMapper {
         }
     }
 
+    public static void updateUserBalance(int updateBalance, String email) throws SQLException {
+        int balance = 0;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM cupcakeproject.customer "
+                    + "WHERE email = '" + email + "'";
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                balance = rs.getInt("balance");
+            }
+
+            balance = balance - updateBalance;
+
+            String SQLTwo = "UPDATE customer SET balance = '" + balance + "' WHERE email = '" + email + "'";
+            ps = con.prepareStatement(SQLTwo, Statement.RETURN_GENERATED_KEYS);
+            ps.executeUpdate();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static ArrayList<OverCustomer> getCustomers() throws CupcakeException {
         ArrayList<OverCustomer> customers = new ArrayList<>();
         try {
