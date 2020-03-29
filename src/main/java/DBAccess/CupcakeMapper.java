@@ -148,4 +148,20 @@ public class CupcakeMapper {
         }
     }
 
+    public static void deleteOrder(int id) throws CupcakeException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "DELETE FROM ordersline where ordersId = '" + id + "'";
+            String SQL2 = "DELETE FROM orders where ordersId = '" + id + "'";
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps2 = con.prepareStatement(SQL2, Statement.RETURN_GENERATED_KEYS);
+            ps.executeUpdate();
+            ps2.executeUpdate();
+
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new CupcakeException(ex.getMessage());
+        }
+        System.out.println("deleted");
+    }
 }

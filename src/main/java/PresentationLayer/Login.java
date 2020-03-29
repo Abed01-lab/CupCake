@@ -46,35 +46,12 @@ public class Login extends Command {
             e.printStackTrace();
         }
 
-        ArrayList<ReturnedUseres> list = createUserList();
-        System.out.println(list.size());
-        boolean found = false;
-        for(int i = 0; i < list.size(); i++){
-            if(list.get(i).getEmail().equals(email) && !(list.get(i).getPassword().equals(password))){
-                request.getRequestDispatcher("index").forward(request,response);
-            }
-            if(list.get(i).getEmail().equals(email)){
-                found = true;
-            }
-        }
-
-        if(found = false){
-            request.getRequestDispatcher("index").forward(request,response);
-        }
+       ArrayList<ReturnedUseres> list = createUserList();
 
         if (session.getAttribute("role").equals("admin")) {
             session.setAttribute("customerList", list);
             return "WEB-INF/adminLoggetInd";
         }
-
-        //ArrayList<ReturnedUseres> arrayList = createUserList();
-        //for (int i = 0; i < arrayList.size(); i++) {
-        //    if (arrayList.get(i).getEmail().equals(email) && arrayList.get(i).getPassword().equals(password)) {
-        //        return "WEB-INF/Forside";
-        //    } else if (arrayList.get(i).getEmail().equals(email)) {
-        //        throw new LoginSampleException( "Indtast korrekt password." );
-        //    }
-        //}
 
         return "WEB-INF/Forside";
     }

@@ -61,7 +61,13 @@
 
             <ul class="list-group">
             <c:forEach var="element" items="${sessionScope.listOfOrders}" varStatus="loop">
-                <li class="list-group-item">Order ID: ${element.ordersId} <span class="badge">${sessionScope.listOfOrders.get(loop.index).orderline.size()}</span></li>
+                <li class="list-group-item">Order ID: ${element.ordersId}
+                    <form action="FrontController" method="post">
+                    <input type="hidden" name="target" value="deleteOrder">
+                    <input type="hidden" name="rowId" value="${sessionScope.listOfOrders.get(loop.index).ordersId}">
+                    <button type="submit" class="btn btn-outline-danger">Fjern</button>
+                    </form>
+                    <span class="badge">${sessionScope.listOfOrders.get(loop.index).orderline.size()}</span></li>
                 <ul class="list-group">
                     <li class="list-group-item">
                         <table class="table">

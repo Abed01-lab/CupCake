@@ -50,7 +50,6 @@ public class UsersMapper {
                 useres.setId( id );
                 return useres;
             } else {
-
                 ArrayList<ReturnedUseres> list = createUserList();
                 for(int i = 0; i < list.size(); i++){
                     if(list.get(i).getEmail().equals(email) && !(list.get(i).getPassword().equals(password))){

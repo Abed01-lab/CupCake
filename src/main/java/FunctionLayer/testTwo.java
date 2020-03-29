@@ -1,20 +1,23 @@
 package FunctionLayer;
 
-import java.sql.Array;
-import java.sql.SQLException;
+import DBAccess.Connector;
+
+import java.sql.*;
 import java.util.ArrayList;
 
 import static DBAccess.CupcakeMapper.getAllOrders;
 import static DBAccess.CupcakeMapper.getOrders;
 import static DBAccess.UsersMapper.addUserBalance;
 import static DBAccess.UsersMapper.createUserList;
+import static DBAccess.CupcakeMapper.deleteOrder;
 
 public class testTwo {
+
 
     public static void main(String[] args) throws CupcakeException {
         System.out.println("eko");
 
-
+        deleteOrder(6);
 
         //ArrayList<Order> orderList = getAllOrders();
         //for(int i = 0; i <orderList.size(); i++){
@@ -30,5 +33,7 @@ public class testTwo {
     }
 
 
+    }
 
-}
+
+

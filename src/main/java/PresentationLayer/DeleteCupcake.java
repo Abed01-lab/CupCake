@@ -29,6 +29,5 @@ public class DeleteCupcake extends Command {
 
         return "/WEB-INF/kurv";
 
-
     }
 }
