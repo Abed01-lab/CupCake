@@ -98,6 +98,24 @@ public class UsersMapper {
         }
     }
 
+    public static int getBalance(int id) throws LoginSampleException {
+        int balance = 0;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM cupcakeproject.customer "
+                    + "WHERE customerId = " + id;
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                balance = rs.getInt("balance");
+            }
+            return balance;
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
     public static void addUserBalance(int balanceToAdd, String email) throws SQLException {
         int balance = 0;
         try {

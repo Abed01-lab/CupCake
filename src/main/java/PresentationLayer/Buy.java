@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static DBAccess.CupcakeMapper.insertOrderLine;
+import static DBAccess.UsersMapper.getBalance;
 import static DBAccess.UsersMapper.updateUserBalance;
 
 public class Buy extends Command {
@@ -22,6 +23,7 @@ public class Buy extends Command {
 
         ArrayList<CupCake> cupCakes = (ArrayList<CupCake>) session.getAttribute("kurvListe");
         Useres user = (Useres) session.getAttribute("user");
+
         try {
             System.out.println("virker");
             insertOrderLine(user,cupCakes);
@@ -33,6 +35,13 @@ public class Buy extends Command {
         for (int i = 0; i < cupCakes.size(); i++) {
             totalSum += cupCakes.get(i).getSum();
         }
+
+        int balance = getBalance(user.getId());
+        if(totalSum > balance){
+            request.setAttribute("besked", "* Din saldo er for lav til at foretage denne ordre.");
+            return "WEB-INF/Forside";
+        }
+
         try {
             updateUserBalance(totalSum, user.getEmail());
         } catch (SQLException e) {
