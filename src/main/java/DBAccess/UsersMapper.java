@@ -16,6 +16,10 @@ import java.util.ArrayList;
  */
 public class UsersMapper {
 
+    /**
+     * @param useres
+     * @throws LoginSampleException
+     */
     public static void createUser( Useres useres) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
@@ -34,6 +38,12 @@ public class UsersMapper {
         }
     }
 
+    /**
+     * @param email
+     * @param password
+     * @return Useres
+     * @throws LoginSampleException
+     */
     public static Useres login(String email, String password ) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
@@ -62,6 +72,7 @@ public class UsersMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
 
     public static ArrayList<ReturnedUseres> createUserList() throws LoginSampleException {
         ArrayList<ReturnedUseres> users = new ArrayList<>();
